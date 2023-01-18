@@ -5,11 +5,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/src/assets/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/src/styles/perfil.css">
+    <script src="/src/scripts/perfil.js" type="Module" defer></script>
     <title>Página de Perfil</title>
   </head>
 
   <body>
+    <header class="break-all">
+    </header>
+    <dialog id="toast"
+      class="border-none font-normal text-[var(--white)] px-[16px] py-[10px] top-0 w-[320px] max-w-full capitalize break-words">
+    </dialog>
 
+    <main class="bg-[var(--white)]">
+      <dialog id="modal__container">
+        <div class="modal__container--header">
+          <img id="BtnFecharModal" src="../assets/close-btn.svg"
+            alt="botão para fechar">
+        </div>
+        <div class="modal__container--content"></div>
+        <div class="modal__container--footer"></div>
+      </dialog>
+      <section class="foto-de-perfil h-[362px] flex flex-row items-end justify-center">
+
+        <img
+          class="bg-[var(--white)] border-[5px] border-[var(--white)] rounded-full h-[320px] w-[320px] max-w-full object-cover"
+          src=""
+          alt="">
+      </section>
+
+      <section
+        class="info-perfil flex flex-col items-center w-[480px] max-w-full mx-auto mt-[42px] p-[24px] rounded-[4px] break-all">
+        <h2 class="titulo font-bold text-2xl text-[var(--purple)]">Dados pessoais</h2>
+        <div class="info flex flex-col flex-wrap self-start gap-[8px] mt-[20px]">
+          <p class="info-nome font-semibold text-base text-[var(--purple)]">Nome:
+            <span class="text-[var(--black)] first-letter:uppercase"></span>
+          </p>
+          <p class="info-email font-semibold text-base text-[var(--purple)]">E-mail:
+            <span class="text-[var(--black)]"></span>
+          </p>
+        </div>
+        <div class="botoes mt-[52px] flex flex-col gap-y-[16px] gap-x-[32px] md:flex-row">
+          <button id="atualiza-perfil"
+            class="atualiza-info font-semibold text-sm text-[var(--white)] bg-[var(--purple)] py-[4px] px-[16px] rounded-[var(--radius)] border border-[var(--purple)]">Atualizar
+            informações</button>
+          <button id="deleta-perfil"
+            class="deleta-info font-semibold text-sm text-[var(--red)] bg-[var(--white)] py-[4px] px-[16px] rounded-[var(--radius)] border border-[var(--red)]">Deletar
+            conta</button>
+
+        </div>
+      </section>
+
+      <section
+        class="area-pets flex flex-col flex-wrap my-[96px] gap-[42px]">
+        <div
+          class="pets-header w-[524px] max-w-full mx-auto flex flex-row flex-wrap gap-[16px] justify-between md:w-[1024px] md:max-w-full">
+          <button id="registra-pet"
+            class="bg-[var(--green)] px-[16px] py-[4px] rounded-[var(--radius)] font-semibold text-sm text-[var(--white)]">Cadastrar
+            novo pet</button>
+          <div class="pets-header__filtra-pets flex flex-row flex-wrap gap-[16px]">
+            <select id="select-especies"
+              class="focus:outline-none px-[16px] py-[4px] bg-[var(--white)] md:w-[120px] rounded-[var(--radius)] border border-[var(--light-purple)] font-normal text-[0.625rem] text-[var(--light-purple)] cursor-pointer">
+              <option class="bg-[var(--white)] text-[var(--light-purple)]"
+                value="" selected disabled>Espécie</option>
+            </select>
+            <button id="busca-pet"
+              class="bg-[var(--purple)] px-[16px] py-[4px] rounded-[var(--radius)] font-semibold text-sm text-[var(--white)]"><a
+                href="#pets-usuario">Buscar</a></button>
+          </div>
+        </div>
+        <ul id="pets-usuario"
+          class="render-pets max-w-[480px] mx-auto bg-[var(--white)] flex flex-col gap-[64px] md:grid md:grid-cols-2 md:max-w-[1024px] max-h-[500px] pb-[16px] pr-[4px] overflow-y-auto">
+        </ul>
+
+      </section>
+    </main>
+    <footer></footer>
   </body>
 
 </html>
