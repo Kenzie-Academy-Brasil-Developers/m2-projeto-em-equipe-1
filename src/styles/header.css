@@ -1,0 +1,74 @@
+.header__caixa{
+    border-bottom: 1px solid var( --light-gray); 
+}
+
+#hamburguer{
+    display: none;
+}
+.menu{
+    display: flex;
+    justify-content:  space-between;
+    padding: 24px 60px;
+}
+
+.menu__logo{
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+
+    color: var(--purple);
+}
+
+.menu__botoes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+    padding: 4px 24px;
+}
+
+.menu__registro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 112px;
+    height: 22px;
+
+    background-color: var(--white);
+    color: var(--purple);
+
+    border: solid 1px var(--purple);
+    border-radius: var(--radius);
+}
+
+.menu__login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 90px;
+    height: 30px;
+
+    background-color: var(--purple);
+    color: var(--white);
+    border-radius: var(--radius);
+}
+
+@media (max-width: 600px){
+  .menu__botoes{
+    display: none;
+  }
+
+  #hamburguer{
+    display: inline-block;
+    
+    position: absolute;
+    left: 80.94%;
+    right: 11.28%;
+    top: 4.6%;
+    bottom: 94.09%;
+  }
+}
