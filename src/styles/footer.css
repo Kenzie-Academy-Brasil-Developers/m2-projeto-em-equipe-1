@@ -1,0 +1,57 @@
+footer{
+
+    position: absolute;
+    width: 425px;
+    height: 48px;
+    left: 0px;
+    top: 2150px;
+    background-color: var(--light-gray);
+
+}
+
+span{
+
+    position: absolute;
+    left: 26.52%;
+    right: 29.69%;
+    top: 35.42%;
+    bottom: 31.25%;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 16px;
+    
+    color: var(--purple);
+}
+
+@media(min-width: 426px){
+
+footer{
+
+    position: absolute;
+    width: 1440px;
+    height: 48px;
+    left: 0px;
+    top: 882px;
+    background-color: var(--light-gray);
+
+}
+
+span{
+
+    position: absolute;
+    left: 41.94%;
+    right: 41.46%;
+    top: 35.42%;
+    bottom: 31.25%;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+
+    color: var(--purple);
+}
+}
