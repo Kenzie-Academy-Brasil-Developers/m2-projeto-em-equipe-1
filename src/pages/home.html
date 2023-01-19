@@ -1,96 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/src/assets/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="/src/styles/home.css">
-    <link rel="stylesheet" href="/src/styles/footer.css">
-    <link rel="stylesheet" href="/src/styles/global.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    
-    
+    <script type="Module" src="/src/scripts/home.js" defer></script>
+
     <title>Home</title>
-</head>
-<body>
+  </head>
 
+  <body>
 
-    <main class="main__conteiner">
-        
-        <div class="div__card">
-          <ul>
-            <li class="li__1">
-              <img class="img__1" src="/src/assets/dog-1.png" alt="animal">
-              <span class="span__1">Bidu</span>
-              <span class="span__sub1">Cachorro</span>
-              <button class="button__1" id="btn1">Me adota?</button>
-            </li>
-          </ul>
+    <dialog id="toast"
+      class="border-none font-normal text-[var(--white)] px-[16px] py-[10px] top-0 w-[320px] max-w-full capitalize break-words">
+    </dialog>
+    <main class="main__conteiner mb-[82px] mt-[112px]">
+      <dialog id="modal__container">
+        <div class="modal__container--header">
+          <img id="BtnFecharModal" src="/src/assets/close-btn.svg"
+            alt="botão para fechar">
         </div>
+        <div class="modal__container--content"></div>
+        <div class="modal__container--footer"></div>
+      </dialog>
 
-        <div class="div__card">
-            <ul>
-              <li class="li__2">
-                <img class="img__2" src="/src/assets/cat-1.png" alt="animal">
-                <span class="span__2">Mingau</span>
-                <span class="span__sub2">Gato</span>
-                <button class="button__2" id="btn2">Me adota?</button>
-              </li>
-            </ul>
-          </div>
+      <div class="div__list-cards h-[672px]">
+        <ul
+          class="list-cards grid md:grid-cols-3 justify-items-center grid-cols-1 gap-[64px] h-[672px] overflow-y-auto overflow-x-hidden">
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <span>KenziePets | Todos os Direitos Reservados</span>
+    </footer>
+  </body>
 
-          <div class="div__card">
-            <ul>
-              <li class="li__3">
-                <img class="img__3" src="/src/assets/cat-2.png" alt="animal">
-                <span class="span__3">Frajola</span>
-                <span class="span__sub3">Gato</span>
-                <button class="button__3" id="btn3">Me adota?</button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="div__card">
-            <ul>
-              <li class="li__4">
-                <img class="img__4" src="/src/assets/dog-2.png" alt="animal">
-                <span class="span__4">Toby</span>
-                <span class="span__sub4">Cachorro</span>
-                <button class="button__4" id="btn4">Me adota?</button>
-              </li>
-            </ul>
-          </div>
-  
-          <div class="div__card">
-            <ul>
-              <li class="li__5">
-                <img class="img__5" src="/src/assets/dog-3.png" alt="animal">
-                <span class="span__5">Bob</span>
-                <span class="span__sub5">Cachorro</span>
-                <button class="button__5" id="btn5">Me adota?</button>
-              </li>
-            </ul>
-          </div>
-        
-          <div class="div__card">
-            <ul>
-              <li class="li__6">
-                <img class="img__6" src="/src/assets/cat-3.png" alt="animal">
-                <span class="span__6">Tom</span>
-                <span class="span__sub6">Gato</span>
-                <button class="button__6" id="btn6">Me adota?</button>
-              </li>
-            </ul>
-          </div>
-      </main>
-
-      <footer>
-        <span>KenziePets | Todos os Direitos Reservados</span>
-      </footer>
-
-      <script src="/src/scripts/home.js"></script>
-</body>
 </html>
