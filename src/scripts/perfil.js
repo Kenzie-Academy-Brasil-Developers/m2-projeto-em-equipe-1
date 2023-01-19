@@ -3,7 +3,7 @@ import { requisicaoAtualizarPerfil, requisicaoLerPerfil, requisicaoPetsUsuario, 
 const modal = document.getElementById( "modal__container" );
 const modalContent = document.querySelector( ".modal__container--content" );
 
-function pegaToken() { return localStorage.getItem( 'TokenKey' ) }
+function pegaToken() { return localStorage.getItem( '#TokenKey' ) }
 
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzM5MDU2OTEsImV4cCI6MTY3NDUxMDQ5MSwic3ViIjoiYzg2YWFjODItYmI0Yi00MzQ3LWEzNTEtZGFkNzM0MWY4OTBjIn0.WD5OTdlG7J4yLcrRBk-9_xFqriwNn0Q1FUqP6plrPLk';
 
@@ -129,9 +129,8 @@ function reqDeletePerfil( token ) {
     const deleteReq = await requisicaoDeletarPerfil( token );
     const { message, response } = deleteReq;
 
-    if ( message ) { renderToast( message, 'bg-[var(--red)]' ) }
+    if ( message ) { renderToast( 'Conta excluída com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.replace( '/' ) }, 1500 ) }
     else if ( response ) { renderToast( response, 'bg-[var(--red)]' ) }
-    else { renderToast( 'Conta excluída com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.replace( '/' ) }, 1500 ) }
     modal.close();
   } );
 
