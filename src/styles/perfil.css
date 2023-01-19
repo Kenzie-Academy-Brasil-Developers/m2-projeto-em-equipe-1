@@ -1,4 +1,7 @@
 @import url(./global.css);
+@import url(./header.css);
+@import url(./footer.css);
+@import url(./modal.css);
 
 .foto-de-perfil {
   background-image: linear-gradient(to bottom, var(--purple) 55%, var(--white) 45%);

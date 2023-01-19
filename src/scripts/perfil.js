@@ -1,16 +1,11 @@
+import { pegaToken } from './global.js';
 import { requisicaoAtualizarPerfil, requisicaoLerPerfil, requisicaoPetsUsuario, requisicaoCriarPet, requisicaoDeletarPerfil, requisicaoEditarPetPeloId } from './requests.js';
+
+const token = pegaToken();
+if ( !token ) window.location.replace( '/' );
 
 const modal = document.getElementById( "modal__container" );
 const modalContent = document.querySelector( ".modal__container--content" );
-
-function pegaToken() { return localStorage.getItem( '#TokenKey' ) }
-
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzM5MDU2OTEsImV4cCI6MTY3NDUxMDQ5MSwic3ViIjoiYzg2YWFjODItYmI0Yi00MzQ3LWEzNTEtZGFkNzM0MWY4OTBjIn0.WD5OTdlG7J4yLcrRBk-9_xFqriwNn0Q1FUqP6plrPLk';
-
-function checaLogin() {
-  if ( !token ) { window.location.replace( '/' ) }
-}
-checaLogin();
 
 async function renderUsuario( token ) {
   const perfil = await requisicaoLerPerfil( token );
@@ -97,8 +92,8 @@ function reqPatchAtualizaPerfil( token ) {
     const patch = await requisicaoAtualizarPerfil( token, novosDados );
     const { message, response } = patch;
 
-    if ( message ) { renderToast( message, 'bg-[var(--red)]' ) }
-    else if ( response ) { renderToast( response, 'bg-[var(--red)]' ) }
+    if ( message ) renderToast( message, 'bg-[var(--red)]' )
+    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
     else { renderToast( 'Perfil atualizado com sucesso', 'bg-[var(--green)]' ); setTimeout( () => { window.location.reload() }, 1500 ) }
     modal.close();
   } );
@@ -130,7 +125,7 @@ function reqDeletePerfil( token ) {
     const { message, response } = deleteReq;
 
     if ( message ) { renderToast( 'Conta excluída com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.replace( '/' ) }, 1500 ) }
-    else if ( response ) { renderToast( response, 'bg-[var(--red)]' ) }
+    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
     modal.close();
   } );
 
@@ -185,8 +180,8 @@ function reqPostCadastrarPet( token ) {
     const cadastrarPetReq = await requisicaoCriarPet( token, dadosDeCadastro );
     const { message, response } = cadastrarPetReq;
 
-    if ( message ) { renderToast( message, 'bg-[var(--red)]' ) }
-    else if ( response ) { renderToast( response, 'bg-[var(--red)]' ) }
+    if ( message ) renderToast( message, 'bg-[var(--red)]' )
+    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
     else { renderToast( 'Pet cadastrado com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.reload() }, 1500 ) }
     modal.close();
   } );
@@ -244,8 +239,8 @@ function reqPatchAtualizaPet( token, id ) {
     const atualizarPetReq = await requisicaoEditarPetPeloId( id, token, novosDados );
     const { message, response } = atualizarPetReq;
 
-    if ( message ) { renderToast( message, 'bg-[var(--red)]' ) }
-    else if ( response ) { renderToast( response, 'bg-[var(--red)]' ) }
+    if ( message ) renderToast( message, 'bg-[var(--red)]' )
+    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
     else { renderToast( 'Perfil atualizado com sucesso', 'bg-[var(--green)]' ); modal.close(); setTimeout( () => { window.location.reload() }, 1500 ) }
   } );
 }
@@ -266,6 +261,6 @@ function renderToast( text, color ) {
   toast.insertAdjacentHTML( 'afterbegin', `<h2>${text}</h2>` );
 
   toast.show();
-  setTimeout( () => { toast.classList.add( 'close-error' ) }, 2000 )
+  setTimeout( () => toast.classList.add( 'close-error' ), 2000 )
   setTimeout( () => { toast.close(); toast.classList.remove( 'close-error', color ); toast.innerHTML = '' }, 3500 )
 }
