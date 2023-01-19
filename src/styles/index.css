@@ -1,0 +1,67 @@
+.pets__container{
+    max-width: 780px;
+    max-height: 850px;
+
+    margin: 0 auto;
+
+    padding-top: 70px;
+
+}
+
+
+
+.cards__pets{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    grid-row-gap: 30px;
+}
+
+.pets__list{
+    width: 200px;
+    height: 272px;
+
+    box-shadow: 0px 0px 5px rgba(78, 32, 150, 0.25);
+    border-radius: var(--radius);
+
+ }   
+ 
+ul > li > img{
+    object-fit: cover;
+}
+
+
+
+.nome__pet{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 110%;
+
+    padding-left: 20px;
+
+    color: var(--purple);
+}
+
+ul li span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 11px;
+
+    padding-left: 20px;
+
+    color: var(--gray);
+}
+
+@media (max-width: 650px){
+    .pets__container{
+        width: 50%;
+    }
+    
+}
