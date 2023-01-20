@@ -1,18 +1,12 @@
-const modal = document.querySelector("#modal__container")
+const modal = document.querySelector( "#modal__container" )
+const modalContent = document.querySelector( ".modal__container--content" );
 
-modal.showModal()
+export function fecharModal() {
+  const btnFechar = document.getElementById( "BtnFecharModal" )
 
-
-function fecharModal() {
-    const btnFechar = document.querySelector("#BtnFecharModal")
-    const modal = document.querySelector("#modal__container")
-
-    btnFechar.addEventListener("click", () => modal.close())
-
-    modal.addEventListener("click", (event) => {
-        if (event.target.id == "modal__container") {
-            modal.close()
-        }
-    })
+  btnFechar.addEventListener( "click", () => { modal.close(); modalContent.innerHTML = '' } )
+  modal.addEventListener( "click", ( event ) => {
+    if ( event.target.id == "modal__container" ) { modal.close(); modalContent.innerHTML = '' }
+  } )
 }
-fecharModal()
+fecharModal();

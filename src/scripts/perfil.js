@@ -1,11 +1,33 @@
-import { pegaToken } from './global.js';
+import { logoff } from './logoff.js';
+import { fecharModal } from './modais.js';
 import { requisicaoAtualizarPerfil, requisicaoLerPerfil, requisicaoPetsUsuario, requisicaoCriarPet, requisicaoDeletarPerfil, requisicaoEditarPetPeloId } from './requests.js';
+import { toast } from './toast.js';
 
-const token = pegaToken();
+const token = localStorage.getItem( '@KenziePets:Usuario' );
 if ( !token ) window.location.replace( '/' );
+
+document.querySelector( '.menu__home' ).addEventListener( 'click', () => window.location.replace( '/src/pages/home.html' ) );
+document.querySelector( '.menu__logout' ).addEventListener( 'click', () => logoff() );
 
 const modal = document.getElementById( "modal__container" );
 const modalContent = document.querySelector( ".modal__container--content" );
+const red = '#C20803'
+const green = '#08C203'
+
+function ativarHamburguer() {
+  const menu = document.querySelector( "#hamburguer" )
+  const botoes = document.querySelector( "#menu" )
+
+  menu.addEventListener( 'click', () => {
+    botoes.classList.toggle( "hidden" );
+
+    if ( !botoes.classList.contains( "hidden" ) ) {
+      menu.innerText = "close"
+    } else {
+      menu.innerText = "menu"
+    }
+  } )
+}
 
 async function renderUsuario( token ) {
   const perfil = await requisicaoLerPerfil( token );
@@ -38,7 +60,7 @@ async function renderPetsUsuario( especie ) {
 
     listaDePets.insertAdjacentHTML( 'beforeend', `<li class="pet flex flex-row rounded-[4px] w-full break-all max-h-[200px]">
       <img src="${avatar_url}" alt="Foto de: ${name}"
-        class="max-w-[41.666666667%] object-cover rounded-l-[4px]">
+        class="w-[41.666666667%] object-cover rounded-l-[4px]">
       <div class="info-pet flex flex-col gap-[16px] px-[36px] py-[42px] justify-center">
         <div class="info-pet__dados flex flex-col flex-wrap gap-[8px]">
           <p class="font-semibold text-sm text-[var(--purple)] line-2">Nome:
@@ -67,12 +89,15 @@ function atualizaPerfil() {
   const botaoAtualizaPerfil = document.getElementById( 'atualiza-perfil' );
 
   botaoAtualizaPerfil.addEventListener( 'click', async ( e ) => {
+    const perfil = await requisicaoLerPerfil( token );
+    const { name, avatar_url } = perfil;
+
     modalContent.innerHTML = ''
     modalContent.insertAdjacentHTML( 'afterbegin',
       `<h3 class="modal__container--content--titulo">Atualizar perfil</h3>
       <form>
-        <input name="name" type="text" placeholder="Nome" class="text-[var(--black)]">
-        <input name="avatar_url" type="text" placeholder="Avatar" class="text-[var(--black)]">
+        <input value="${name}" name="name" type="text" placeholder="Nome" class="text-[var(--black)]">
+        <input value="${avatar_url}" name="avatar_url" type="text" placeholder="Avatar" class="text-[var(--black)]">
         <button id="atualizar-perfil">Atualizar</button>
       </form>` )
 
@@ -92,9 +117,9 @@ function reqPatchAtualizaPerfil( token ) {
     const patch = await requisicaoAtualizarPerfil( token, novosDados );
     const { message, response } = patch;
 
-    if ( message ) renderToast( message, 'bg-[var(--red)]' )
-    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
-    else { renderToast( 'Perfil atualizado com sucesso', 'bg-[var(--green)]' ); setTimeout( () => { window.location.reload() }, 1500 ) }
+    if ( message ) toast( message, red )
+    else if ( response ) toast( response, red )
+    else { toast( 'Perfil atualizado com sucesso', green ); setTimeout( () => { window.location.reload() }, 1500 ) }
     modal.close();
   } );
 }
@@ -124,8 +149,8 @@ function reqDeletePerfil( token ) {
     const deleteReq = await requisicaoDeletarPerfil( token );
     const { message, response } = deleteReq;
 
-    if ( message ) { renderToast( 'Conta excluída com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.replace( '/' ) }, 1500 ) }
-    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
+    if ( message ) { toast( 'Conta excluída com sucesso!', green ); setTimeout( () => { window.location.replace( '/' ); localStorage.clear() }, 1500 ) }
+    else if ( response ) toast( response, red )
     modal.close();
   } );
 
@@ -180,9 +205,9 @@ function reqPostCadastrarPet( token ) {
     const cadastrarPetReq = await requisicaoCriarPet( token, dadosDeCadastro );
     const { message, response } = cadastrarPetReq;
 
-    if ( message ) renderToast( message, 'bg-[var(--red)]' )
-    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
-    else { renderToast( 'Pet cadastrado com sucesso!', 'bg-[var(--green)]' ); setTimeout( () => { window.location.reload() }, 1500 ) }
+    if ( message ) toast( message, red )
+    else if ( response ) toast( response, red )
+    else { toast( 'Pet cadastrado com sucesso!', green ); setTimeout( () => { window.location.reload() }, 1500 ) }
     modal.close();
   } );
 }
@@ -200,24 +225,28 @@ function atualizaPet() {
   const buttons = document.querySelectorAll( '[data-pet-id]' );
 
   buttons.forEach( button => {
-    button.addEventListener( 'click', ( e ) => {
-      const id = e.target.dataset.petId
+    button.addEventListener( 'click', async ( e ) => {
+      const petId = e.target.dataset.petId;
+      let petParaAtualizar = ( await requisicaoPetsUsuario( token ) ).find( pet => pet.id == petId );
+
+      const { name, avatar_url, bread } = petParaAtualizar;
+
       modalContent.innerHTML = ''
       modalContent.insertAdjacentHTML( 'afterbegin',
         `<h3 class="modal__container--content--titulo">Atualizar pet</h3>
       <form>
-      <input name="name" type="text" placeholder="Nome" class="text-[var(--black)]">
-        <input name="bread" type="text" placeholder="Raça" class="text-[var(--black)]">
+      <input value="${name}" name="name" type="text" placeholder="Nome" class="text-[var(--black)]">
+        <input value="${bread}" name="bread" type="text" placeholder="Raça" class="text-[var(--black)]">
         <select name="species" id="form-atualizar-pet__select-especies"
           class="focus:outline-none px-[16px] font-normal text-[var(--black)] cursor-pointer">
           <option class="bg-[var(--white)] text-[var(--light-purple)]"
             value="" selected disabled>Espécie</option>
         </select>
-        <input name="avatar_url" type="text" placeholder="Avatar" class="text-[var(--black)]">
+        <input value="${avatar_url}" name="avatar_url" type="text" placeholder="Avatar" class="text-[var(--black)]">
         <button id="btn-atualizar-pet">Atualizar</button>
       </form>` )
       renderOpcoes( 'form-atualizar-pet__select-especies' );
-      reqPatchAtualizaPet( token, id );
+      reqPatchAtualizaPet( token, petId );
       modal.showModal();
 
     } )
@@ -239,28 +268,11 @@ function reqPatchAtualizaPet( token, id ) {
     const atualizarPetReq = await requisicaoEditarPetPeloId( id, token, novosDados );
     const { message, response } = atualizarPetReq;
 
-    if ( message ) renderToast( message, 'bg-[var(--red)]' )
-    else if ( response ) renderToast( response, 'bg-[var(--red)]' )
-    else { renderToast( 'Perfil atualizado com sucesso', 'bg-[var(--green)]' ); modal.close(); setTimeout( () => { window.location.reload() }, 1500 ) }
+    if ( message ) toast( message, red )
+    else if ( response ) toast( response, red )
+    else { toast( 'Pet atualizado com sucesso', green ); modal.close(); setTimeout( () => { window.location.reload() }, 1500 ) }
   } );
 }
 
-function fecharModal() {
-  const btnFechar = document.getElementById( "BtnFecharModal" )
-
-  btnFechar.addEventListener( "click", () => { modal.close(); modalContent.innerHTML = '' } )
-  modal.addEventListener( "click", ( event ) => {
-    if ( event.target.id == "modal__container" ) { modal.close(); modalContent.innerHTML = '' }
-  } )
-}
 fecharModal();
-
-function renderToast( text, color ) {
-  const toast = document.getElementById( 'toast' );
-  toast.classList.add( color )
-  toast.insertAdjacentHTML( 'afterbegin', `<h2>${text}</h2>` );
-
-  toast.show();
-  setTimeout( () => toast.classList.add( 'close-error' ), 2000 )
-  setTimeout( () => { toast.close(); toast.classList.remove( 'close-error', color ); toast.innerHTML = '' }, 3500 )
-}
+ativarHamburguer();
