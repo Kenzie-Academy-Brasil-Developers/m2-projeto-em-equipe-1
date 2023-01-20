@@ -15,7 +15,6 @@ footer span {
   font-style: normal;
   font-weight: 400;
   font-size: 9px;
-  line-height: 16px;
-
+  line-height: 100%;
   color: var(--purple);
 }
