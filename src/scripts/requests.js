@@ -1,3 +1,10 @@
+import { fazerLogin } from "./index.js"
+import { fecharModal } from "./modais.js"
+import { toast } from "./toast.js"
+
+const red = '#C20803'
+const green = '#08C203'
+
 export async function requisicaoFazerLogin(dados) {
     const requisicao = await fetch("http://localhost:3333/session/login", {
         method: "POST",
@@ -7,9 +14,13 @@ export async function requisicaoFazerLogin(dados) {
         body: JSON.stringify(dados)
     })
 
-        .then(resp => resp.json())
+        const requisicaoJson = await requisicao.json()
 
-    return requisicao
+        if(!requisicao.ok){
+            toast(requisicaoJson.message, red)
+        }
+
+    return requisicaoJson
 }
 
 export async function requisicaoCadastrarUsuario(dados) {
@@ -21,9 +32,13 @@ export async function requisicaoCadastrarUsuario(dados) {
         body: JSON.stringify(dados)
     })
 
-        .then(resp => resp.json())
+    const requisicaoJson = await requisicao.json()
 
-    return requisicao
+        if(!requisicao.ok){
+            toast(requisicaoJson.message, red)
+        }
+
+    return requisicaoJson
 }
 
 export async function requisicaoLerTodosOsPerfis(token) {
@@ -83,7 +98,7 @@ export async function requisicaoDeletarPerfil(token) {
     return requisicao
 }
 
-export async function requisicaoCriarPet(token, dados){
+export async function requisicaoCriarPet(token, dados) {
     const requisicao = await fetch("http://localhost:3333/pets", {
         method: "POST",
         headers: {
@@ -98,7 +113,7 @@ export async function requisicaoCriarPet(token, dados){
     return requisicao
 }
 
-export async function requisicaoLerTodosOsPets(token){
+export async function requisicaoLerTodosOsPets(token) {
     const requisicao = await fetch("http://localhost:3333/pets", {
         method: "GET",
         headers: {
@@ -112,7 +127,7 @@ export async function requisicaoLerTodosOsPets(token){
     return requisicao
 }
 
-export async function requisicaoLerOsMeusPets(){
+export async function requisicaoLerOsMeusPets() {
     const requisicao = await fetch("http://localhost:3333/pets/my_pets", {
         method: "GET",
         headers: {
@@ -126,7 +141,7 @@ export async function requisicaoLerOsMeusPets(){
     return requisicao
 }
 
-export async function requisicaoEditarPetPeloId(id, token, dados){
+export async function requisicaoEditarPetPeloId(id, token, dados) {
     const requisicao = await fetch(`http://localhost:3333/pets/${id}`, {
         method: "PATCH",
         headers: {
@@ -141,7 +156,7 @@ export async function requisicaoEditarPetPeloId(id, token, dados){
     return requisicao
 }
 
-export async function requisicaoDeletarPetPeloId(id, token){
+export async function requisicaoDeletarPetPeloId(id, token) {
     const requisicao = await fetch(`http://localhost:3333/pets/${id}`, {
         method: "DELETE",
         headers: {
@@ -155,7 +170,7 @@ export async function requisicaoDeletarPetPeloId(id, token){
     return requisicao
 }
 
-export async function requisicaoCriarAdocao(token, dados){
+export async function requisicaoCriarAdocao(token, dados) {
     const requisicao = await fetch("http://localhost:3333/adoptions", {
         method: "POST",
         headers: {
@@ -170,7 +185,7 @@ export async function requisicaoCriarAdocao(token, dados){
     return requisicao
 }
 
-export async function requisicaoLerAdocaoPeloId(id, token){
+export async function requisicaoLerAdocaoPeloId(id, token) {
     const requisicao = await fetch(`http://localhost:3333/adoptions/${id}`, {
         method: "GET",
         headers: {
@@ -184,7 +199,7 @@ export async function requisicaoLerAdocaoPeloId(id, token){
     return requisicao
 }
 
-export async function requisicaoLerTodasAsAdocoes(token){
+export async function requisicaoLerTodasAsAdocoes(token) {
     const requisicao = await fetch("http://localhost:3333/adoptions", {
         method: "GET",
         headers: {
@@ -198,7 +213,7 @@ export async function requisicaoLerTodasAsAdocoes(token){
     return requisicao
 }
 
-export async function requisicaoLerOsMeusAdotados(){
+export async function requisicaoLerOsMeusAdotados() {
     const requisicao = await fetch("http://localhost:3333/adoptions/myAdoptions", {
         method: "GET",
         headers: {
@@ -212,7 +227,7 @@ export async function requisicaoLerOsMeusAdotados(){
     return requisicao
 }
 
-export async function requisicaoEditarAdotadoPeloId(id, token, dados){
+export async function requisicaoEditarAdotadoPeloId(id, token, dados) {
     const requisicao = await fetch(`http://localhost:3333/adoptions/update/${id}`, {
         method: "PATCH",
         headers: {
@@ -227,7 +242,7 @@ export async function requisicaoEditarAdotadoPeloId(id, token, dados){
     return requisicao
 }
 
-export async function requisicaoDeletarPetPeloId(id, token){
+export async function requisicaoDeletarPetAdotadoPeloId(id, token) {
     const requisicao = await fetch(`http://localhost:3333/adoptions/delete/${id}`, {
         method: "DELETE",
         headers: {

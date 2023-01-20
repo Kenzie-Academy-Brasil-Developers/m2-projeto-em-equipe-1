@@ -1,82 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    <link rel="stylesheet" href="src/styles/global.css">
-    <link rel="stylesheet" href="src/styles/header.css">
-    <link rel="stylesheet" href="src/styles/index.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="src/scripts/index.js" defer></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
 
-  </head>
+  <!-- TailWind -->
 
-  <body>
-    <header class="header__caixa">
-      <span id="hamburguer" class="material-symbols-outlined">
-        menu
-        </span>
-      <nav class="menu">
-        <div class="menu__logo">
-          <h2>KenziePets</h2>
-        </div>
-       
-        <ul class="menu__botoes" id="menu">
-          <li class="menu__registro">
-            <a href="#">Register</a>
-          </li>
-          <li class="menu__login">
-            <a href="#">Login</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <section class="pets__container">
-      <ul class="cards__pets">
+  <!-- CSS -->
 
-        <li class="pets__list" id="1">
-          <img src="src/assets/dog-1.png" alt="bidu">
+  <link rel="stylesheet" href="src/styles/index.css">
+  <link rel="stylesheet" href="./src/styles/modal.css">
+
+  <!-- Google Fonts -->
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <!-- TOASTIFY -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+  <!-- JavaScript -->
+
+  <script type="module" src="src/scripts/index.js" defer></script>
+  <!-- TOASTIFY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</head>
+
+<body>
+  <header class="header__caixa">
+    <span id="hamburguer" class="material-symbols-outlined">
+      menu
+    </span>
+    <nav class="menu">
+      <div class="menu__logo">
+        <h2>KenziePets</h2>
+      </div>
+
+      <ul class="menu__botoes" id="menu">
+        <li class="menu__registro">
+          <button>Register</button>
+        </li>
+        <li class="menu__login">
+          <button>Login</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="pets__container">
+    <ul class="cards__pets">
+
+      <li class="pets__list" id="1">
+        <img class="rounded-t-[4px]" src="src/assets/dog-1.png" alt="bidu">
+        <div>
           <h3 class="nome__pet">bidu</h3>
           <span>cachorro</span>
-        </li>
+        </div>
+      </li>
 
-        <li class="pets__list" id="2">
-          <img src="src/assets/cat-1.png" alt="">
+      <li class="pets__list" id="2">
+        <img class="rounded-t-[4px]" src="src/assets/cat-1.png" alt="">
+        <div>
           <h3 class="nome__pet">Mingau</h3>
           <span>Gato</span>
-        </li>
+        </div>
+      </li>
 
-        <li class="pets__list" id="3">
-          <img src="src/assets/cat-2.png" alt="Frajola">
+      <li class="pets__list" id="3">
+        <img class="rounded-t-[4px]" src="src/assets/cat-2.png" alt="Frajola">
+        <div>
           <h3 class="nome__pet">Frajola</h3>
           <span>Gato</span>
-        </li>
+        </div>
+      </li>
 
-        <li class="pets__list" id="4">
-          <img src="src/assets/dog-2.png" alt="Toby">
+      <li class="pets__list" id="4">
+        <img class="rounded-t-[4px]" src="src/assets/dog-2.png" alt="Toby">
+        <div>
           <h3 class="nome__pet">Toby</h3>
           <span>cachorro</span>
-        </li>
+        </div>
+      </li>
 
-        <li class="pets__list" id="5">
-          <img src="src/assets/dog-3.png" alt="Bob">
+      <li class="pets__list" id="5">
+        <img class="rounded-t-[4px]" src="src/assets/dog-3.png" alt="Bob">
+        <div>
           <h3 class="nome__pet">Bob</h3>
           <span>cachorro</span>
-        </li>
+        </div>
+      </li>
 
-        <li class="pets__list" id="6">
-          <img src="src/assets/cat-3.png" alt="Tom">
+      <li class="pets__list" id="6">
+        <img class="rounded-t-[4px]" src="src/assets/cat-3.png" alt="Tom">
+        <div>
           <h3 class="nome__pet">Tom</h3>
-          <span>cachorro</span>
-        </li>
+          <span>Gato</span>
+        </div>
+      </li>
 
-      </ul>
-    </section>
-  </body>
+    </ul>
+  </section>
+
+  <dialog id="modal__container">
+    <div class="modal__container--header">
+      <img id="BtnFecharModal" src="src/assets/close-btn.svg" alt="botão para fechar">
+    </div>
+    <div class="modal__container--content">
+
+      <!-- Extra: Modal login -->
+
+      <!-- <h3 class="modal__container--content--titulo">Login</h3>
+      <form>
+        <input name="email" type="text" placeholder="Email">
+        <input name="password" type="password" placeholder="Senha">
+        <button id="modal__container--content--btn-atualizar-perfil">Entrar</button>
+        <p>Não tem cadastro? <span>Clique aqui</span> para se cadastrar.</p>
+      </form> -->
+
+
+      <!-- Extra: Modal Cadastro -->
+
+      <!-- <h3 class="modal__container--content--titulo">Cadastrar</h3>
+      <form>
+        <input name="name" type="text" placeholder="Nome">
+        <input name="email" type="text" placeholder="Email">
+        <input name="password" type="password" placeholder="Senha">
+        <input name="avatar_url" type="text" placeholder="Avatar?">
+        <button id="modal__container--content--btn-atualizar-perfil">Cadastrar</button>
+        <p>Já tem cadastro? <span>Clique aqui</span> para se logar.</p>
+      </form> -->
+
+    </div>
+    <div class="modal__container--footer"></div>
+  </dialog>
+</body>
 
 </html>
