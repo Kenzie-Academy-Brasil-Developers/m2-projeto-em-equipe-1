@@ -1,4 +1,8 @@
-.pets__container{
+@import url("./global.css");
+@import url("./header.css");
+/* @import url("./footer.css"); */
+
+.pets__container {
     max-width: 780px;
     max-height: 850px;
 
@@ -8,60 +12,56 @@
 
 }
 
-
-
-.cards__pets{
+.cards__pets {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    grid-row-gap: 30px;
+    grid-row-gap: 50px;
 }
 
-.pets__list{
+.pets__list {
     width: 200px;
-    height: 272px;
+    height: max-content;
 
     box-shadow: 0px 0px 5px rgba(78, 32, 150, 0.25);
-    border-radius: var(--radius);
+    border-radius: 4px;
 
- }   
- 
-ul > li > img{
     object-fit: cover;
 }
 
+.pets__list>div {
+    display: flex;
+    flex-direction: column;
 
+    margin: 20px 0 45px 15px;
+}
 
-.nome__pet{
-    font-family: 'Open Sans';
-    font-style: normal;
+ul>li>img {
+    width: 100%;
+    height: 160px;
+}
+
+.nome__pet {
+    font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-size: 24px;
-    line-height: 110%;
-
-    padding-left: 20px;
+    font-size: 26px;
 
     color: var(--purple);
 }
 
-ul li span{
-    font-family: 'Open Sans';
-    font-style: normal;
+ul li span {
+    font-family: "Inter", sans-serif;
     font-weight: 600;
-    font-size: 8px;
-    line-height: 11px;
-
-    padding-left: 20px;
+    font-size: 12px;
 
     color: var(--gray);
 }
 
-@media (max-width: 650px){
-    .pets__container{
+@media (max-width: 650px) {
+    .pets__container {
         width: 50%;
     }
-    
 }

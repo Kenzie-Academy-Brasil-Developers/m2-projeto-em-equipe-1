@@ -7,6 +7,22 @@
   max-width: 100%;
 }
 
+<<<<<<< HEAD
+.span__1{
+    position: absolute;
+    width: 51px;
+    height: 26px;
+    left: 11px;
+    top: 165px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 110%;
+
+    color: var(--purple);
+=======
 .list-cards__li {
   width: 200px;
   height: 272px;
@@ -14,6 +30,7 @@
   background: var(--white);
   box-shadow: 0px 0px 5px rgba(78, 32, 150, 0.25);
   border-radius: 4px;
+>>>>>>> develop
 }
 
 .list-cards__foto {
