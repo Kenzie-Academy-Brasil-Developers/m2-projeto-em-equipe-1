@@ -11,3 +11,23 @@
   --light-purple: #B48CF2;
   --radius: 16px;
 }
+
+button:hover, select:hover, input:hover {
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px var(--light-purple);
+  background-color: var(--light-gray)
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+  border: 1px solid var(--light-purple);
+}
