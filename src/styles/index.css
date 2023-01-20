@@ -1,0 +1,68 @@
+@import url("./global.css");
+@import url("./modal.css");
+@import url("./header.css");
+@import url("./footer.css");
+
+.pets__container {
+  max-width: 780px;
+  max-height: 850px;
+
+  margin: 0 auto;
+
+  padding-top: 70px;
+
+}
+
+.cards__pets {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  grid-row-gap: 50px;
+}
+
+.pets__list {
+  width: 200px;
+  height: max-content;
+
+  box-shadow: 0px 0px 5px rgba(78, 32, 150, 0.25);
+  border-radius: 4px;
+
+  object-fit: cover;
+}
+
+.pets__list > div {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 0 45px 15px;
+}
+
+ul > li > img {
+  width: 100%;
+  height: 160px;
+}
+
+.nome__pet {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+
+  color: var(--purple);
+}
+
+ul li span {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+
+  color: var(--gray);
+}
+
+@media (max-width: 650px) {
+  .pets__container {
+    width: 50%;
+  }
+}
